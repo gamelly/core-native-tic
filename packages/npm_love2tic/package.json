@@ -1,0 +1,36 @@
+{
+  "name": "@gamely/love2tic",
+  "version": "0.0.19",
+  "author": "RodrigoDornelles",
+  "license": "Apache-2.0",
+  "homepage": "https://docs.gamely.com.br",
+  "repository": "https://github.com/gamelly/core-native-tic80",
+  "funding": "https://github.com/sponsors/RodrigoDornelles",
+  "bugs": "https://github.com/gamelly/core-native-tic80/issues",
+  "description": "Convert your love2d games to tic80 cartridges!",
+  "keywords": [
+    "game engine",
+    "game",
+    "engine",
+    "love2d",
+    "love",
+    "tic-80",
+    "tic80",
+    "tic",
+    "lua"
+  ],
+  "main": "dist/love2tic.js",
+  "bin": {
+    "love2tic": "bin/love2tic"
+  },
+  "scripts": {
+    "copydist": "cp README.md ../../dist && cp package.json ../../dist",
+    "build:lib": "bun build build.ts --target browser --entry-naming 'love2tic.js' --outdir ../../dist/dist",
+    "build:bin": "bun build bin.ts --target node --entry-naming 'love2tic' --outdir ../../dist/bin",
+    "build": "bun run build:lib --minify && bun run build:bin --minify && bun run copydist"
+  },
+  "devDependencies": {
+    "bun": "^1.2.4",
+    "@gamely/love-engine": "^0.0.18"
+  }
+}

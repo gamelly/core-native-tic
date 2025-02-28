@@ -62,9 +62,6 @@ local function colorid(c)
     return colornew
 end
 
-native_cfg_poly_repeat_0 = true
-native_cfg_poly_repeat_1 = true
-
 function native_draw_start()
 end
 
@@ -123,11 +120,20 @@ function native_text_print(x, y, t)
     print(tostring(t), x, y, current_color, true, font_size)
 end
 
+native_cfg_poly_repeat_0 = true
+native_cfg_poly_repeat_1 = true
+tic80engine = tic80engine()
+tic80game = tic80game()
+
 function TIC()
     if not started then
         started = true
-        trace('engine: '..tic80engine.meta.title..' '..tic80engine.meta.version)
-        trace('game: '..tic80game.meta.title..' '..tic80game.meta.version)
+        if tic80engine and type(tic80engine) == 'table' and tic80engine.meta and tic80engine.meta.title then
+            trace('engine: '..tic80engine.meta.title..' '..tostring(tic80engine.meta.version))
+        end
+        if tic80game and type(tic80game) == 'table' and tic80game.meta and tic80game.meta.title then
+            trace('game: '..tic80game.meta.title..' '..tostring(tic80game.meta.version))
+        end
         native_callback_init(240, 136, tic80game)
     else
         do

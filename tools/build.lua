@@ -26,16 +26,16 @@ local gameCode = gameFile:read('*a')
 local engineCode = engineFile:read('*a')
 local backendCode = backendFile:read('*a')
 
-gameCode = 'tic80game = (function()' .. gameCode .. 'end)()'
-engineCode = 'tic80engine = (function()' .. engineCode .. 'end)()'
+gameCode = 'local tic80game = function()\n' .. gameCode .. '\nend\n'
+engineCode = 'local tic80engine = function()\n' .. engineCode .. '\nend\n'
 
 -- Default chunk data (default configuration)
 local defaultChunk = string.char(0x00)
 
 -- Write chunks to the .tic file
 writeChunk(outputFile, 2, 5, gameCode)
-writeChunk(outputFile, 1, 5, backendCode)
-writeChunk(outputFile, 0, 5, engineCode)
+writeChunk(outputFile, 1, 5, engineCode)
+writeChunk(outputFile, 0, 5, backendCode)
 writeChunk(outputFile, 0, 17, defaultChunk)
 
 outputFile:close()
