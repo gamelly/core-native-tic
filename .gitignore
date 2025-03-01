@@ -1,0 +1,9 @@
+*.tic
+*.tic80
+package-lock.json
+dist/
+games/
+engines/
+node_modules/
+.DS_Store
+Thumbs.db
