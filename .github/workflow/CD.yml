@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: ['lua2tic']
+        package: ['lua2tic', 'love2tic']
     steps:
       -
         uses: actions/checkout@master
