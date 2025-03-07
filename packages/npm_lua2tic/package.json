@@ -4,9 +4,9 @@
     "author": "RodrigoDornelles",
     "license": "Apache-2.0",
     "homepage": "https://docs.gamely.com.br",
-    "repository": "https://github.com/gamelly/core-native-tic80",
+    "repository": "https://github.com/gamelly/core-native-tic",
     "funding": "https://github.com/sponsors/RodrigoDornelles",
-    "bugs": "https://github.com/gamelly/core-native-tic80/issues",
+    "bugs": "https://github.com/gamelly/core-native-tic/issues",
     "description": "Create your own engine for your games in lua and export it as a tic80 cartridge!",
     "keywords": [
         "game engine",
