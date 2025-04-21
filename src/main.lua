@@ -44,10 +44,13 @@ local colormap = {
     [0xF4F4F4] = 12,
     [0xC8CCCC] = 13,
     [0x94B0C2] = 13,
+    [0xD3B083] = 13,
     [0x828282] = 14,
     [0x566C86] = 14,
+    [0x7F6A4F] = 14,
     [0x505050] = 15,
-    [0x333C57] = 15
+    [0x333C57] = 15,
+    [0x4C3F2F] = 15
 }
 
 local function colorid(c)
