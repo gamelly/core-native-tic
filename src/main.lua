@@ -4,12 +4,8 @@ local font_size, font_previous = 5, 5
 local delta, last = 0, time()
 local keypress = {}
 
-local padmap = {
-    'up', 'down', 'left', 'right', 'a', 'b', 'c', 'd'
-}
-
 local keymap = {
-    58, 59, 60, 61, 26, 24, 3, 22
+    'up', 'down', 'left', 'right', 'a', 'b', 'c', 'd'
 }
 
 local colormap = {
@@ -48,16 +44,26 @@ local colormap = {
     [0xF4F4F4] = 12,
     [0xC8CCCC] = 13,
     [0x94B0C2] = 13,
+    [0xD3B083] = 13,
     [0x828282] = 14,
     [0x566C86] = 14,
+    [0x7F6A4F] = 14,
     [0x505050] = 15,
-    [0x333C57] = 15
+    [0x333C57] = 15,
+    [0x4C3F2F] = 15
 }
 
 local function colorid(c)
-    local colornew = colormap[math.floor(c/256)]
+    local colornew = colormap[c>>8]
     if not colornew then
-        error(string.format('color not exist: 0x%08X', c))
+        local r,g,b = (c>>24) & 255, (c>>16) & 255, (c>>8) & 255
+        local best,d = nil, math.huge
+        for k,v in pairs(colormap) do
+            local kr,kg,kb = (k>>16)&255, (k>>8)&255, k&255
+            local dist = ((r-kr)^2 + (g-kg)^2 + (b-kb)^2)
+            if dist < d then d,best = dist,v end
+        end
+        colornew = best
     end
     return colornew
 end
@@ -144,9 +150,8 @@ function TIC()
         do
             local index = 1
             while index <= #keymap do
-                local keyid = keymap[index]
-                local keyname = padmap[index]
-                local pressed = key(keyid) or btnp(index - 1)
+                local keyname = keymap[index]
+                local pressed = btn(index - 1)
                 if not keypress[index] and pressed then
                     keypress[index] = true
                     native_callback_keyboard(keyname, pressed)
