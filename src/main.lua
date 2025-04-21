@@ -4,12 +4,8 @@ local font_size, font_previous = 5, 5
 local delta, last = 0, time()
 local keypress = {}
 
-local padmap = {
-    'up', 'down', 'left', 'right', 'a', 'b', 'c', 'd'
-}
-
 local keymap = {
-    58, 59, 60, 61, 26, 24, 3, 22
+    'up', 'down', 'left', 'right', 'a', 'b', 'c', 'd'
 }
 
 local colormap = {
@@ -144,9 +140,8 @@ function TIC()
         do
             local index = 1
             while index <= #keymap do
-                local keyid = keymap[index]
-                local keyname = padmap[index]
-                local pressed = key(keyid) or btnp(index - 1)
+                local keyname = keymap[index]
+                local pressed = btn(index - 1)
                 if not keypress[index] and pressed then
                     keypress[index] = true
                     native_callback_keyboard(keyname, pressed)
