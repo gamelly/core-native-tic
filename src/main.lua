@@ -54,9 +54,16 @@ local colormap = {
 }
 
 local function colorid(c)
-    local colornew = colormap[math.floor(c/256)]
+    local colornew = colormap[c>>8]
     if not colornew then
-        error(string.format('color not exist: 0x%08X', c))
+        local r,g,b = (c>>24) & 255, (c>>16) & 255, (c>>8) & 255
+        local best,d = nil, math.huge
+        for k,v in pairs(colormap) do
+            local kr,kg,kb = (k>>16)&255, (k>>8)&255, k&255
+            local dist = ((r-kr)^2 + (g-kg)^2 + (b-kb)^2)
+            if dist < d then d,best = dist,v end
+        end
+        colornew = best
     end
     return colornew
 end
