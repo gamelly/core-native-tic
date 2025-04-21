@@ -19,7 +19,7 @@ You can also create one following the specification.
  * **gly engine micro** <https://cdn.jsdelivr.net/npm/@gamely/gly-engine-micro><br/>smallest version gly engine `~20KB`
 
 ```
-wget -O engine.lua https://cdn.jsdelivr.net/npm/@gamely/gly-engine@0.0.19
+wget -O engine.lua https://cdn.jsdelivr.net/npm/@gamely/gly-engine@0.0.20
 ```
 
 ### Write a simple game
